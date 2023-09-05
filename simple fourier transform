@@ -1,0 +1,12 @@
+k = input('Enter k’);
+	n = input('Enter n’);
+	x = -10:0.02:10;
+	y = zeros(size(x));
+	a = 1;
+		for i = 1:n
+			y = y + sin(a*x)/a;
+			a = a + 2;
+		end
+	y = y*4*k/pi;
+	plot(x,y);
+	grid on
