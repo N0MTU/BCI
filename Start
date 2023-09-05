@@ -1,0 +1,28 @@
+
+/* EEG data reading: */
+EEG_Signal = xlsread('FileName.csv'); 
+
+/* The ‘xlsread(file)’ function reads data files from microsoft excel and returns numeric data.*/
+
+
+/* Plotting samples: */
+	plot(EEG_Signal(:,channel), 'r')
+title(['plot title', num2str(channel)])
+xlabel('x-axis title')
+ylabel('y-axis title')
+
+
+/* Splitting signal samples:*/
+	
+	EEGOpen = EEG_Signal(1:15000,channel);   	
+	EEGClosed = EEG_Signal(15001:30000,channel);
+/* In this case, the sample is split evenly between the first 15000 samples for eyes open, and the last 15000 samples for eyes closed. These values can be changed depending on the signal procured.*/
+/* Band pass filtering:*/
+	EEGOpen_Filtered = bandpass(EEGOpen, [minF maxF], sampleRate);
+EEGClosed_Filtered = bandpass(EEGClosed, [minF maxF], sampleRate);
+
+/* İn which minF = minimum frequency, maxF = maximum frequency.
+
+Observing windows of data: */
+
+	window = x:y;
