@@ -1,0 +1,11 @@
+figure;
+[f1,z1] = ft(sampleRate,EEGOpen_Filtered(window));
+plot(f1,z1, 'Color', 'r'); 
+hold on
+[f2,z2] = ft(250,EEGClosed_Filtered(window));
+plot(f2,z2,'Color', 'b'); 
+xlabel('Frequency')
+ylabel('Amplitude')
+xlim([0 50])
+title(['Eyes Open & Close Channel - ', num2str(channel)])
+legend('Eyes Open','Eyes Close')
