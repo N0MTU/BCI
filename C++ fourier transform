@@ -1,0 +1,40 @@
+	#define _USE_MATH_DEFINES
+	#include<cmath>
+	#include<math.h>
+	#include<iostream>
+	#include<vector>
+
+	using namespace std;
+
+	int main(){
+
+		double x, y, z;
+		const int Nsamples = 1000;
+		vector<float> a;
+		vector<float> spectrum;
+		float f0 = 1.0, out_a, spectrum_out;
+
+		for (int i = 0; i < Nsamples; ++i)
+		{
+			a.push_back(cos(f0*i*0.05)+cos(10.0*f0*i*0.05));
+			out_a = a.at(i);
+	
+			cout << out_a << endl;
+			
+		}
+		for (int i = 0; i < Nsamples; i++)
+		{
+			float re = 0, im = 0;
+			for (int j = 0; j < Nsamples * i; j++)
+			{
+				float arg = -2 * M_PI / Nsamples * i * j;
+				re += cos(arg) * a.at(j);
+				im += sin(arg) * a.at(j);
+			}
+			spectrum.push_back(sqrt(re * re + im * im));
+			spectrum_out = spectrum.at(i);
+
+			cout << spectrum_out << endl;
+		}
+		return 0;
+	}	
